@@ -13,9 +13,11 @@ const UserSchema: Schema = new Schema(
     faceDescriptors: { type: Object, required: false },
     role: { type: String, required: true, default: "USER" },
     device_token: { type: String, required: false, default: "" },
-    requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "request" }],
+    conversation: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "conversation" },
+    ],
   },
   { timestamps: true }
 );
 
-export default mongoose.model<IUser>("users", UserSchema);
+export default mongoose.model<IUser>("user", UserSchema);

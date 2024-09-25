@@ -21,7 +21,16 @@ const login = async (email: string, password: string) => {
     });
     if (!user) throw new Error("Người dùng không tồn tại");
     await checkPassword(password, user.password);
-    const token = JwtService.createToken({ ...user });
+
+    const token = JwtService.createToken({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      gender: user.gender,
+      phone_number: user.phone_number,
+      role: user.role,
+      device_token: user.device_token,
+    });
     return {
       token,
       user,
